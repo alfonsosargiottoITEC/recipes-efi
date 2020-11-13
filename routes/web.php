@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Aliment;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -36,6 +36,40 @@ Route::get('/', function () {
 
 #Route::resource('aliment', 'AlimentController');
 
-Route::get('/aliment', 'AlimentController@list_aliment');
+
 
 Route::get('aliment/{id}/{category}', 'AlimentController@show_aliment');
+
+
+
+/*
+|--------------------------------------------------------------------------
+| ELOQUENT 
+|--------------------------------------------------------------------------
+|
+| 
+| 
+| 
+|
+*/
+
+Route::get('/read', function(){
+
+    $aliments = Aliment::all();
+
+    foreach($aliments as $aliment){
+        return $aliment->name;
+    }
+
+});
+
+Route::get('/find', function(){
+
+    $aliments = Aliment::find(1);
+
+    return $aliments->name;
+    // foreach($aliments as $aliment){
+    //     return $aliment->name;
+    // }
+
+});
