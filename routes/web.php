@@ -16,3 +16,26 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+
+// Route::get('/about', function () {
+//     return "hi about page";
+// });
+
+// Route::get('/post/{id}', function ($id) {
+//     return "this is post num ".$id;
+// });
+
+
+// Route::get('/admin/posts/example',array('as'=>'admin.home', function () {
+//     $url = route('admin.home');
+//     return "this url is  ". $url;
+// }));
+
+// Route::get('/aliment/{id}', 'AlimentController@index');
+
+#Route::resource('aliment', 'AlimentController');
+
+Route::get('/aliment', 'AlimentController@list_aliment');
+
+Route::get('aliment/{id}/{category}', 'AlimentController@show_aliment');
