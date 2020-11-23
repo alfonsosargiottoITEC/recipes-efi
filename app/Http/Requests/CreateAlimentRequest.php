@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class CreateRecipeRequest extends FormRequest
+class CreateAlimentRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,12 +24,9 @@ class CreateRecipeRequest extends FormRequest
     public function rules()
     {
         return [
-            
             'name'=>'required|max:20',
-            'description'=>'required|max:200',
-            'category_id'=>'required',
+            'classification_id'=>'required',
             'user_id'=>'required'
-             
         ];
     }
 }

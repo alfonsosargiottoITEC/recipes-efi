@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CreateAlimentRequest;
 use Illuminate\Http\Request;
+use App\Aliment;
+use Illuminate\Support\Facades\Auth;
 
 class AlimentController extends Controller
 {
@@ -11,9 +14,18 @@ class AlimentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index()
     {
-        //
+        $aliments = Aliment::all();
+
+
+        return view('aliments.index', compact('aliments'));
     }
 
     /**
@@ -23,7 +35,9 @@ class AlimentController extends Controller
      */
     public function create()
     {
-        //
+        $user = Auth::user();
+
+        return view('aliments.create', compact('user'));
     }
 
     /**
@@ -32,9 +46,12 @@ class AlimentController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreateAlimentRequest $request)
     {
-        //
+        Aliment::create($request->all());
+
+
+        return redirect('/aliments');
     }
 
     /**
@@ -45,7 +62,9 @@ class AlimentController extends Controller
      */
     public function show($id)
     {
-        //
+        $aliment = Aliment::findOrFail($id);
+
+        return view('aliments.show', compact('aliment'));
     }
 
     /**
@@ -56,7 +75,10 @@ class AlimentController extends Controller
      */
     public function edit($id)
     {
-        //
+        $aliment = Aliment::findOrFail($id);
+        $user = Auth::user();
+
+        return view('aliments.edit', compact('aliment','user'));
     }
 
     /**
@@ -68,7 +90,11 @@ class AlimentController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $aliment = Aliment::findOrFail($id);
+
+        $aliment->update($request->all());
+
+        return redirect('/aliments');
     }
 
     /**
@@ -79,6 +105,10 @@ class AlimentController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $aliment = Aliment::findOrFail($id);
+
+        $aliment->delete();
+
+        return redirect('/aliments');
     }
 }

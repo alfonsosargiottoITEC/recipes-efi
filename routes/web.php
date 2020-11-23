@@ -370,10 +370,16 @@ Route::group(['middleware' => 'web'], function () {
     
     Route::resource('/recipes', 'RecipeController');
 
+    Route::resource('/aliments', 'AlimentController');
+
     
 
     
 });
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
 
 Auth::routes();
 

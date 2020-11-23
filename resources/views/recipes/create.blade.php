@@ -26,8 +26,10 @@
     {!! Form::label('category_id', 'Category') !!}
     {!! Form::text('category_id', null, ['class'=>'form-control']) !!}
 
-    {!! Form::label('user_id', 'User') !!}
-    {!! Form::text('user_id', null, ['class'=>'form-control']) !!}
+    {{-- {!! Form::label('user_id', 'User') !!}
+    {!! Form::text('user_id', null, ['class'=>'form-control']) !!} --}}
+    
+    {!! Form::hidden('user_id', $user->id) !!}
     
   </div>
 

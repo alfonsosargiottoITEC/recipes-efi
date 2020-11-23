@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\CreateRecipeRequest;
 use Illuminate\Http\Request;
 use App\Recipe;
+use Illuminate\Support\Facades\Auth;
 
 class RecipeController extends Controller
 {
@@ -18,12 +19,13 @@ class RecipeController extends Controller
     {
         $this->middleware('auth');
     }
-    
+
     public function index()
     {
 
 
         $recipes = Recipe::all();
+
 
         return view('recipes.index', compact('recipes'));
     }
@@ -35,7 +37,10 @@ class RecipeController extends Controller
      */
     public function create()
     {
-        return view('recipes.create');
+
+        $user = Auth::user();
+
+        return view('recipes.create', compact('user'));
     }
 
     /**
@@ -57,6 +62,7 @@ class RecipeController extends Controller
         //     'user_id'=>'required'
 
         // ]);
+        
         
         Recipe::create($request->all());
 
@@ -89,8 +95,9 @@ class RecipeController extends Controller
     public function edit($id)
     {
         $recipe = Recipe::findOrFail($id);
+        $user = Auth::user();
 
-        return view('recipes.edit', compact('recipe'));
+        return view('recipes.edit', compact('recipe','user'));
     }
 
     /**
