@@ -17,8 +17,8 @@ class CreateRecipesTable extends Migration
             $table->bigIncrements('id');
             $table->string('name')->nullable(false);
             $table->string('description')->nullable(false);
-            $table->foreignId('classification')->default(1);
-            $table->foreignId('user_id')->nullable(false)->onDelete('cascade')->constrained();
+            $table->foreignId('user_id')->unsigned()->nullable(false)->onDelete('cascade')->constrained();
+            $table-> integer('rating')->default(0);
             $table->timestamps();
         });
     }

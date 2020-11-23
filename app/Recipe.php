@@ -7,10 +7,20 @@ use Illuminate\Database\Eloquent\Model;
 class Recipe extends Model
 {
     protected $fillable = [
-        'recipe_name',
+        'name',
+        'user_id',
+        'description',
+        'category_id'
     ];
 
     public function users(){
         return $this->belongsToMany('App\User')->withTimestamps();
     }
+
+
+    public function aliments(){
+
+        return $this->belongsToMany('App\Aliment')->withPivot('created_at');
+    }
+
 }

@@ -38,4 +38,16 @@ class User extends Authenticatable
     ];
 
 
+    
+    public function recipe()
+    {
+        return $this->hasOne('App\Recipe');
+    }
+
+    public function recipes()
+    {
+        return $this->hasMany('App\Recipe');
+    }
+
+
 }
