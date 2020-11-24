@@ -18,6 +18,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <script src="{{ asset('css/recipe_style.js') }}" defer></script>
 </head>
 <body>
     <div id="app">

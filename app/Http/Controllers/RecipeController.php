@@ -27,7 +27,7 @@ class RecipeController extends Controller
 
 
         $recipes = Recipe::all();
-
+        $categories = Category::all();
 
         return view('recipes.index', compact('recipes'));
     }
@@ -103,7 +103,11 @@ class RecipeController extends Controller
 
         $recipe = Recipe::findOrFail($id);
 
-        return view('recipes.show', compact('recipe'));
+        $aliments = [];
+
+        $aliments = $recipe->aliments->pluck('name','id')->toArray();
+
+        return view('recipes.show', compact('recipe','aliments'));
     }
 
     /**
@@ -115,9 +119,16 @@ class RecipeController extends Controller
     public function edit($id)
     {
         $recipe = Recipe::findOrFail($id);
+
         $user = Auth::user();
 
-        return view('recipes.edit', compact('recipe','user'));
+        
+
+        $categories = Category::pluck('name','id')->all();
+
+        $aliments = Aliment::pluck('name','id')->all();
+
+        return view('recipes.edit', compact('recipe','user','aliments','categories'));
     }
 
     /**

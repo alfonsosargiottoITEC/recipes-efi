@@ -29,7 +29,6 @@
       {!! Form::select('aliment_id[]',[''=>'Choose aliments'] + $aliments, null, ['class'=>'form-control','multiple'=>"multiple"]) !!}
 
       {!! Form::label('category_id', 'Category') !!}
-      {{-- {!! Form::select('category_id',$categories,0,['class' => 'form-control']) !!} --}}
       <select name="category_id" id="category_id" class='form-control'>
         @foreach($categories as $category )
           <option value="{{ $category->id }}">{{ $category->name }}</option>

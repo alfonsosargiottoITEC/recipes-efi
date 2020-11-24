@@ -18,8 +18,15 @@
     {!! Form::label('description', 'Description') !!}
     {!! Form::textarea('description', null, ['class'=>'form-control']) !!}
 
+    {!! Form::label('aliment_id', 'Aliments') !!}
+    {!! Form::select('aliment_id[]',[''=>'Choose aliments'] + $aliments, null, ['class'=>'form-control','multiple'=>"multiple"]) !!}
+
     {!! Form::label('category_id', 'Category') !!}
-    {!! Form::text('category_id', null, ['class'=>'form-control']) !!}
+    {{-- {!! Form::text('category_id', null, ['class'=>'form-control']) !!}
+    <p class="card-text"><small class="text-muted">Category: {{$recipe->category->name}}</small></p> --}}
+
+
+    {!! Form::select('category_id',[''=>$recipe->category->name] + $categories, $recipe->category->id, ['class'=>'form-control']) !!}
 
     {!! Form::hidden('user_id', $user->id) !!}
     
