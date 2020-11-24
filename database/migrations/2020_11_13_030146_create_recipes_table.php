@@ -15,8 +15,8 @@ class CreateRecipesTable extends Migration
     {
         Schema::create('recipes', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('name')->nullable(false);
-            $table->string('description')->nullable(false);
+            $table->string('name', 100)->nullable(false);
+            $table->string('description', 500)->nullable(false);
             $table->foreignId('user_id')->unsigned()->nullable(false)->onDelete('cascade')->constrained();
             $table-> integer('rating')->default(0);
             $table->timestamps();

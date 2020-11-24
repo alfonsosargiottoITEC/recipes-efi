@@ -23,4 +23,9 @@ class Recipe extends Model
         return $this->belongsToMany('App\Aliment')->withPivot('created_at');
     }
 
+    public function category()
+    {
+        return $this->hasOne('App\Category');
+    }
+
 }

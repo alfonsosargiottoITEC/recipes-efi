@@ -6,6 +6,8 @@ use App\Http\Requests\CreateRecipeRequest;
 use Illuminate\Http\Request;
 use App\Recipe;
 use Illuminate\Support\Facades\Auth;
+use App\Category;
+use App\Aliment;
 
 class RecipeController extends Controller
 {
@@ -40,7 +42,12 @@ class RecipeController extends Controller
 
         $user = Auth::user();
 
-        return view('recipes.create', compact('user'));
+        $categories = Category::all();
+
+        $aliments = Aliment::pluck('name','id')->all();
+
+
+        return view('recipes.create', compact('user','categories','aliments'));
     }
 
     /**
@@ -64,7 +71,20 @@ class RecipeController extends Controller
         // ]);
         
         
-        Recipe::create($request->all());
+        ////////////// MANY TO MANY, into PIVOT TABLE
+
+        $recipe = Recipe::create($request->all());
+        $aliments_id =  $request->get('aliment_id',[]);
+        $recipe->aliments()->attach($aliments_id);
+        
+
+        // $recipe->aliments()->attach(
+        //     $aliments->random(rand(1, 9))->pluck('id')->toArray()
+        // ); 
+        
+
+
+       
 
 
         return redirect('/recipes');

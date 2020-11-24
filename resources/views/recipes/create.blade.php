@@ -6,34 +6,47 @@
 
 
 
-<h1>Create recipe</h1>
 
 {{-- <form action="/recipes" method="post"> --}}
   
   {{-- @csrf --}}
   
   {!! Form::open(['method'=>'POST', 'action'=>'RecipeController@store']) !!}
+  
+  
+  <div class="form-group row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+      <h1>Create recipe</h1>
 
+      {!! Form::label('name', 'Name') !!}
+      {!! Form::text('name', null, ['class'=>'form-control']) !!}
+  
+      {!! Form::label('description', 'Description') !!}
+      {!! Form::textarea('description', null, ['class'=>'form-control']) !!}
 
-  <div class="form-group">
+      {!! Form::label('aliment_id', 'Aliments') !!}
+      {!! Form::select('aliment_id[]',[''=>'Choose aliments'] + $aliments, null, ['class'=>'form-control','multiple'=>"multiple"]) !!}
 
-    {!! Form::label('name', 'Name') !!}
-    {!! Form::text('name', null, ['class'=>'form-control']) !!}
+      {!! Form::label('category_id', 'Category') !!}
+      {{-- {!! Form::select('category_id',$categories,0,['class' => 'form-control']) !!} --}}
+      <select name="category_id" id="category_id" class='form-control'>
+        @foreach($categories as $category )
+          <option value="{{ $category->id }}">{{ $category->name }}</option>
+        @endforeach
+      </select>
+  
+  
+      
+      
+      {!! Form::hidden('user_id', $user->id) !!}
+      
+      {!! Form::submit('Crear receta', ['class'=>'btn btn-primary']) !!}
+    </div>
+  
 
-    {!! Form::label('description', 'Description') !!}
-    {!! Form::textarea('description', null, ['class'=>'form-control']) !!}
+    </div>
 
-    {!! Form::label('category_id', 'Category') !!}
-    {!! Form::text('category_id', null, ['class'=>'form-control']) !!}
-
-    {{-- {!! Form::label('user_id', 'User') !!}
-    {!! Form::text('user_id', null, ['class'=>'form-control']) !!} --}}
-    
-    {!! Form::hidden('user_id', $user->id) !!}
-    
-  </div>
-
-    {!! Form::submit('Crear receta', ['class'=>'btn btn-primary']) !!}
   
 
   {{-- <input type="text" name="name" placeholder="Nombre de la receta"> 
