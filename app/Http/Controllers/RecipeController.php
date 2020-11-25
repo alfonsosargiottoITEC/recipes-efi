@@ -19,7 +19,7 @@ class RecipeController extends Controller
 
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('auth')->only('create','edit','show');
     }
 
     public function index()
@@ -120,9 +120,9 @@ class RecipeController extends Controller
     {
         $recipe = Recipe::findOrFail($id);
 
-        $user = Auth::user();
+        $this->authorize('edit', $recipe);
 
-        
+        $user = Auth::user();
 
         $categories = Category::pluck('name','id')->all();
 
@@ -143,7 +143,11 @@ class RecipeController extends Controller
 
         $recipe = Recipe::findOrFail($id);
 
+        $this->authorize('update', $recipe);
+
         $recipe->update($request->all());
+
+
 
         return redirect('/recipes');
 
@@ -160,6 +164,8 @@ class RecipeController extends Controller
     public function destroy($id)
     {
         $recipe = Recipe::findOrFail($id);
+
+        $this->authorize('delete', $recipe);
 
         $recipe->delete();
 

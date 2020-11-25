@@ -1,49 +1,55 @@
 @extends('layouts.app')
 
 @section('content')
-    
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+          <a href="{{route('recipes.create')}}" class="btn btn-warning">NUEVA receta</a>
+        </div>
+    </div>
 
-<a href="{{route('recipes.create')}}" class="btn btn-warning">NUEVA receta</a>
-<div class="row">
+
+
+
     @foreach ($recipes as $recipe)
 
+    
+      <div class="col-md-6">
 
-      {{-- <li><a href="{{route('recipes.show',$recipe->id)}}">{{$recipe->name}}</a></li> --}}
+     
 
+    <div class="card md-5 ml-4 mb-md-5 pb-md-5 mt-5" style="width: 44rem;height: 35rem;">
       
-        <div class="col-md-6">
-
-       
-
-      <div class="card md-5 ml-4 mb-md-5 pb-md-5 mt-5" style="width: 44rem;height: 35rem;">
-        
-        <div class="embed-responsive embed-responsive-16by9">
-          <img class="card-img-top embed-responsive-item" src="https://img-global.cpcdn.com/recipes/188f30eb05239cef/1200x630cq70/photo.jpg" alt="Card image cap">
-        </div>
-      
-        
-        <div class="card-body pt-50">
-          <h5 class="card-title">{{$recipe->name}}</h5>
-          <p class="card-text">{{$recipe->description}}.</p>
-        <p class="card-text"><small class="text-muted">Rating: {{$recipe->rating}}</small></p>
-          <a href="{{route('recipes.show',$recipe->id)}}" class="btn btn-primary">Ver receta</a>
-        </div>
+      <div class="embed-responsive embed-responsive-16by9">
+        <a href="{{route('recipes.show',$recipe->id)}}"><img class="card-img-top embed-responsive-item" src="{{$recipe->photo}}" alt="Card image cap"></a>
       </div>
-
-
-    </div>
-  
+    
       
+      <div class="card-body pt-50">
+        <a href="{{route('recipes.show',$recipe->id)}}"><h5 class="card-title">{{$recipe->name}}</h5></a>
+        <p class="card-text">{{Str::limit($recipe->description,'70', '...')}}</p>
         
-    @endforeach
+
+        <div class="card-footer text-muted">
+
+            <p class="card-text"> Votes: {{$recipe->rating}}</p>
+            <p>Created on {{$recipe->created_at->diffForHumans()}}</p> 
+
+
+        </div>
+        <a href="{{route('recipes.show',$recipe->id)}}" class="btn btn-primary">Ver receta</a>
+      </div>
+    </div>
+
+
   </div>
 
-
-  
-
-
-
+    
+      
+  @endforeach
 
 
+</div>
 @endsection
+
 

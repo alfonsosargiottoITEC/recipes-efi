@@ -20,10 +20,13 @@
       <h1>Create recipe</h1>
 
       {!! Form::label('name', 'Name') !!}
-      {!! Form::text('name', null, ['class'=>'form-control']) !!}
+      {!! Form::text('name', null, ['class'=>'form-control','required'=>'required']) !!}
   
       {!! Form::label('description', 'Description') !!}
-      {!! Form::textarea('description', null, ['class'=>'form-control']) !!}
+      {!! Form::textarea('description', null, ['class'=>'form-control','required'=>'required']) !!}
+
+      {!! Form::label('photo', 'Photo link: ') !!}
+      {!! Form::text('photo', null, ['class'=>'form-control','required'=>'required']) !!}
 
       {!! Form::label('aliment_id', 'Aliments') !!}
       {!! Form::select('aliment_id[]',[''=>'Choose aliments'] + $aliments, null, ['class'=>'form-control','multiple'=>"multiple"]) !!}

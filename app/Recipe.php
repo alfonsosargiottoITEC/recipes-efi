@@ -10,7 +10,8 @@ class Recipe extends Model
         'name',
         'user_id',
         'description',
-        'category_id'
+        'category_id',
+        'photo'
     ];
 
     public function users(){

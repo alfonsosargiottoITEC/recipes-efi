@@ -28,7 +28,7 @@ class DatabaseSeeder extends Seeder
         // DB::statement('SET_FOREIGN_KEY_CHECKS=1');
 
         Schema::disableForeignKeyConstraints();
-
+        DB::table('roles')->truncate();
         DB::table('categories')->truncate();
         DB::table('classifications')->truncate();
         DB::table('aliments')->truncate();
@@ -38,7 +38,9 @@ class DatabaseSeeder extends Seeder
         Schema::enableForeignKeyConstraints();
         // factory(App\User::class,5)->create();
 
-
+        $this->call(RoleSeeder::class);
+        $this->call(UserSeeder::class);
+        
         factory(App\User::class,5)->create()->each(function($user){
 
             $user->recipes()->save(factory(App\Recipe::class)->make());

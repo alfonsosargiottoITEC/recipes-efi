@@ -18,6 +18,7 @@ class CreateRecipesTable extends Migration
             $table->string('name', 100)->nullable(false);
             $table->string('description', 500)->nullable(false);
             $table->foreignId('user_id')->unsigned()->nullable(false)->onDelete('cascade')->constrained();
+            $table->string('photo', 255)->nullable(false);
             $table-> integer('rating')->default(0);
             $table->timestamps();
         });

@@ -6,6 +6,7 @@ use App\Classification;
 use App\Recipe;
 use App\Category;
 use App\User;
+use App\Role;
 use Illuminate\Support\Facades\Auth;
 
 
@@ -23,11 +24,6 @@ use Illuminate\Support\Facades\Auth;
 Route::get('/', function () {
     return view('welcome');
 
-    // if(Auth::check()){
-
-    //     return 'the user is logged in';
-
-    // };
 
     if(Auth::attempt(['email' => $email, 'password' => $password])){
 
@@ -60,7 +56,7 @@ Route::get('/', function () {
 
 
 
-Route::get('aliment/{id}/{category}', 'AlimentController@show_aliment');
+// Route::get('aliment/{id}/{category}', 'AlimentController@show_aliment');
 
 
 
@@ -361,6 +357,11 @@ Route::get('/recipe/pivot', function () {
 |
 */
 
+Route::group(['middleware' => ['IsAdmin']], function () {
+    
+    Route::resource('/aliments', 'AlimentController');
+
+});
 
 
 Route::group(['middleware' => 'web'], function () {
@@ -369,11 +370,6 @@ Route::group(['middleware' => 'web'], function () {
     Route::resource('/users', 'UserController');
     
     Route::resource('/recipes', 'RecipeController');
-
-    Route::resource('/aliments', 'AlimentController');
-
-    
-
     
 });
 
@@ -381,6 +377,28 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Auth::routes();
+
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+
+Route::get('/admin','AdminController@index');
+
+
+
+
+// Route::get('/admin/user/roles',['middleware'=>['role'], 'uses'=>'HomeController@index'], function () {
+
+
+//     $user = Auth::user();
+
+//     if($user->isAdmin()){
+
+//         return 'usando middleware, es admin';
+
+        
+//     }
+
+
+    
+// });
