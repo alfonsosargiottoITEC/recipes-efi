@@ -10,6 +10,7 @@ use App\Role;
 use Illuminate\Support\Facades\Auth;
 
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -389,7 +390,18 @@ Route::get('/admin', function(){
 
 });
 
+Route::get('/myrecipes',['middleware'=>['auth'], 'uses'=>'RecipeController@myrecipes'], function () {
 
+    // $this->middleware('auth')->only('create','edit','show');
+
+    
+
+    $recipes = Recipe::all();
+    $categories = Category::all();
+
+    return view('recipes.myrecipes',compact('recipes','categories'));
+    
+});
 
 
 // Route::get('/admin/user/roles',['middleware'=>['role'], 'uses'=>'HomeController@index'], function () {

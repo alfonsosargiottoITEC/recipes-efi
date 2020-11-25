@@ -15,6 +15,8 @@
       <p class="card-text">{{$recipe->description}}.</p>
     <p class="card-text"><small class="text-muted">Rating: {{$recipe->rating}}</small></p>
     <p class="card-text"><small class="text-muted">Category: {{$recipe->category->name}}</small></p>
+    <p class="card-text"><small class="text-muted">Created by: {{$recipe->user->name}}</small></p>
+    
 
     
 

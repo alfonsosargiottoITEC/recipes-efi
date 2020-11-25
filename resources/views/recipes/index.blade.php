@@ -4,7 +4,7 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-          <a href="{{route('recipes.create')}}" class="btn btn-warning">NUEVA receta</a>
+          
         </div>
     </div>
 
@@ -33,6 +33,7 @@
         <div class="card-footer text-muted">
 
             <p class="card-text"> Votes: {{$recipe->rating}}</p>
+            <p>Created by: {{$recipe->user->name}}</p> 
             <p>Created on {{$recipe->created_at->diffForHumans()}}</p> 
 
 

@@ -42,6 +42,7 @@
         <div class="card-footer text-muted">
             {{-- <p class="card-text"><small class="text-muted">Rating: {{$recipe->rating}}</small></p> --}}
             <p class="card-text"> Votes: {{$recipe->rating}}</p>
+            <p>Created by: {{$recipe->user->name}}</p> 
             <p>Created on {{$recipe->created_at->diffForHumans()}}</p> 
 
 

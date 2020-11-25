@@ -25,8 +25,8 @@ class CreateRecipeRequest extends FormRequest
     {
         return [
             
-            'name'=>'required|max:20',
-            'description'=>'required|max:200',
+            'name'=>'required|max:40',
+            'description'=>'required|max:490',
             'category_id'=>'required',
             'user_id'=>'required'
              

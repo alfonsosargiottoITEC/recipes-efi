@@ -70,6 +70,7 @@
                 
                 @auth
                 <a href="{{ url('/aliments') }}">Aliments</a>
+                <a href="{{ url('/myrecipes') }}">My recipes</a>
                 <a href="{{ url('/home') }}">Home</a>
                 @else
                 <a href="{{ route('login') }}">Login</a>
@@ -78,14 +79,18 @@
                 <a href="{{ route('register') }}">Register</a>
                 @endif
                 @endauth
-                <a href="{{ url('/recipes') }}">Recipes</a>
+                {{-- <a href="{{ url('/recipes') }}">Recipes</a> --}}
                 </div>
             @endif
 
             <div class="content">
-                <div class="title m-b-md">
-                    
+                <div class="title m-b-md">                    
                     Delicious Recipes
+                </div>
+                <div class='img-fluid'>
+
+                    <h3>Haz click en la imagen para empezar a conocer nuestras recetas</h3>
+                    <a href="/recipes"><img src="https://pixnio.com/free-images/2018/06/28/2018-06-28-07-44-29.jpg" width="1024px" height='680px'></a>
                 </div>
 
                 

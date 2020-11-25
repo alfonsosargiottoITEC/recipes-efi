@@ -171,4 +171,15 @@ class RecipeController extends Controller
 
         return redirect('/recipes');
     }
+
+
+    public function myrecipes()
+    {
+        $UserId = Auth::id(); 
+
+        $recipes = Recipe::all();
+        $categories = Category::all();
+
+        return view('recipes.myrecipes', compact('recipes','UserId'));
+    }
 }
