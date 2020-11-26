@@ -64,36 +64,10 @@ class RecipeController extends Controller
     public function store(CreateRecipeRequest $request)
     {
         
-        // return $request->all();
-
-        // $this->validate($request,[
-
-        //     'name'=>'required|max:20',
-        //     'description'=>'required|max:200',
-        //     'category_id'=>'required',
-        //     'user_id'=>'required'
-
-        // ]);
-        
-        
-        ////////////// MANY TO MANY, into PIVOT TABLE
-
         $recipe = Recipe::create($request->all());
         $aliments_id =  $request->get('aliment_id',[]);
         $recipe->aliments()->attach($aliments_id);
-        
-
-        // $recipe->aliments()->attach(
-        //     $aliments->random(rand(1, 9))->pluck('id')->toArray()
-        // ); 
-        
-
-
-       
-
-
         return redirect('/recipes');
-
 
     }
 
@@ -120,16 +94,6 @@ class RecipeController extends Controller
 
         $aliments = $recipe->aliments->toArray();
 
-
-        // $aliments = array_merge($aliments->toArray());
-
-        // $test = $recipe->aliments->pluck('pivot.quantity','id');
-
-        // return $units;
-
-        // return $test[1]['pivot'];
-
-        
 
         return view('recipes.show', compact('recipe','aliments','total_visits','tags'));
     }
@@ -168,8 +132,12 @@ class RecipeController extends Controller
         $recipe = Recipe::findOrFail($id);
 
         $this->authorize('update', $recipe);
+        
+        $aliments_id =  $request->get('aliment_id',[]);
 
         $recipe->update($request->all());
+
+        $recipe->aliments()->attach($aliments_id);
 
 
 
