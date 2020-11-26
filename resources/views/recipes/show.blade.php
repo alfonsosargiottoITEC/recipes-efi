@@ -5,6 +5,15 @@
 
 
 
+<div class="row">
+
+  <div class="col-md-2">
+    </div>
+
+<div class="col-md-6">
+
+
+
 
 
 <div class="card md-5 ml-4 mb-md-5 pb-md-5 mt-5" style="width: 44rem;height: 55rem;">
@@ -17,23 +26,63 @@
     <p class="card-text"><small class="text-muted">Category: {{$recipe->category->name}}</small></p>
     <p class="card-text"><small class="text-muted">Created by: {{$recipe->user->name}}</small></p>
     <p class="card-text"><small class="text-muted">Total visits: {{$total_visits}}</small></p>
-    
-
-    
-
-    @if (count($aliments) > 0) 
-      <ul>
-        @foreach ($aliments  as $aliment)
-        <li>
-          {{$aliment}}
-        </li>            
+    <p class="card-text"><small class="text-muted">Tags:
+      @if (count($tags) > 0) 
+      
+        @foreach ($tags  as $tag)
+        
+          #{{$tag}}
+      
         @endforeach
-      </ul>
-    @endif
+      
+    @endif      
+       </small></p>
+
+      
+    
+    
+    
+
+    
+
+   
     </div>
   </div>
 
+</div>
 
 
+
+<div class="col-md-4">
+
+  <H3>LISTADO DE ALIMENTOS</H3>
+  <table class="table table-dark">
+    <thead>
+      <tr>
+        <th scope="col">Nombre</th>
+        <th scope="col">Unidad</th>
+        <th scope="col">Cantidad</th>
+      </tr>
+    </thead>
+    <tbody>
+      @if (count($aliments) > 0) 
+        @foreach ($aliments  as $aliment)
+        <tr>
+          <td>{{$aliment['name']}}</td>
+          <td>{{$aliment['pivot']['quantity']}}</td>
+          <td>{{$aliment['pivot']['unit']}}</td>
+        </tr>      
+        @endforeach
+      @endif  
+
+    </tbody>
+  </table>
+
+  
+
+</div>
+
+
+</div>
 
 @endsection

@@ -17,8 +17,8 @@ class CreateAlimentsRecipesTable extends Migration
             $table->increments('id');
             $table->integer('aliment_id');
             $table->integer('recipe_id');
-            $table->integer('quantity');
-            $table->integer('unit');
+            $table->integer('quantity')->default(0);
+            $table->integer('unit')->default(1);
             $table->timestamps();
         });
     }

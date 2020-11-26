@@ -8,6 +8,10 @@ use App\Recipe;
 use Illuminate\Support\Facades\Auth;
 use App\Category;
 use App\Aliment;
+use App\Tag;
+use Illuminate\Support\Arr;
+
+
 
 class RecipeController extends Controller
 {
@@ -28,8 +32,9 @@ class RecipeController extends Controller
 
         $recipes = Recipe::all();
         $categories = Category::all();
+        $tags = Tag::all();
 
-        return view('recipes.index', compact('recipes'));
+        return view('recipes.index', compact('recipes','categories','tags'));
     }
 
     /**
@@ -103,17 +108,30 @@ class RecipeController extends Controller
 
         $recipe = Recipe::findOrFail($id);
 
+        
+
         visits($recipe)->forceIncrement();
 
         $total_visits = visits($recipe)->count();
 
-        $aliments = [];
+        $tags = [];
 
-        $aliments = $recipe->aliments->pluck('name','id')->toArray();
+        $tags = $recipe->tags->pluck('name','id')->toArray();
+
+        $aliments = $recipe->aliments->toArray();
+
+
+        // $aliments = array_merge($aliments->toArray());
+
+        // $test = $recipe->aliments->pluck('pivot.quantity','id');
+
+        // return $units;
+
+        // return $test[1]['pivot'];
 
         
 
-        return view('recipes.show', compact('recipe','aliments','total_visits'));
+        return view('recipes.show', compact('recipe','aliments','total_visits','tags'));
     }
 
     /**

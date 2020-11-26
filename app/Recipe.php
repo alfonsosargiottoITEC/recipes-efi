@@ -28,7 +28,7 @@ class Recipe extends Model
 
     public function aliments(){
 
-        return $this->belongsToMany('App\Aliment')->withPivot('created_at');
+        return $this->belongsToMany('App\Aliment')->withPivot('created_at','quantity','unit');
     }
 
     public function category()
