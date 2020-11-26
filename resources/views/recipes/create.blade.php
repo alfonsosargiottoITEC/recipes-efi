@@ -29,7 +29,7 @@
       {!! Form::text('photo', null, ['class'=>'form-control','required'=>'required', 'maxlength'=>'254']) !!}
 
       {!! Form::label('aliment_id', 'Aliments') !!}
-      {!! Form::select('aliment_id[]',[''=>'Choose aliments'] + $aliments, null, ['class'=>'form-control','multiple'=>"multiple"]) !!}
+      {!! Form::select('aliment_id[]',[''=>'Choose aliments'] + $aliments, 1, ['class'=>'form-control','multiple'=>"multiple", 'required'=>'required']) !!}
 
       {!! Form::label('category_id', 'Category') !!}
       <select name="category_id" id="category_id" class='form-control'>
@@ -49,17 +49,7 @@
 
     </div>
 
-  
 
-  {{-- <input type="text" name="name" placeholder="Nombre de la receta"> 
-
-  <input type="text" name="description"placeholder='Descripción'>
-
-  <input type="text" name="category_id" placeholder="category">
-
-  <input type="text" name="user_id" placeholder="usuario">
-
-  <input type="submit" name='submit'> --}}
 
     {!! Form::close() !!}
 
