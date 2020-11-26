@@ -25,9 +25,6 @@
     {!! Form::select('aliment_id[]',[''=>'Choose aliments'] + $aliments, null, ['class'=>'form-control','multiple'=>"multiple"]) !!}
 
     {!! Form::label('category_id', 'Category') !!}
-    {{-- {!! Form::text('category_id', null, ['class'=>'form-control']) !!}
-    <p class="card-text"><small class="text-muted">Category: {{$recipe->category->name}}</small></p> --}}
-
 
     {!! Form::select('category_id',[''=>$recipe->category->name] + $categories, $recipe->category->id, ['class'=>'form-control','required'=>'required']) !!}
 
