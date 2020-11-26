@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
-
+use Faker\Generator as Faker;
 
 class DatabaseSeeder extends Seeder
 {
@@ -34,10 +34,11 @@ class DatabaseSeeder extends Seeder
         DB::table('aliments')->truncate();
         DB::table('recipes')->truncate();
         DB::table('users')->truncate();
+        DB::table('tags')->truncate();
 
         Schema::enableForeignKeyConstraints();
         // factory(App\User::class,5)->create();
-
+        $this->call(TagSeeder::class);
         $this->call(RoleSeeder::class);
         $this->call(UserSeeder::class);
         
@@ -51,14 +52,25 @@ class DatabaseSeeder extends Seeder
         $this->call(AlimentSeeder::class);
 
         $aliments = App\Aliment::all();
+        $tags = App\Tag::all();
         
 
-        App\Recipe::all()->each(function ($recipe) use ($aliments) { 
-            $recipe->aliments()->attach(
-                $aliments->random(rand(1, 9))->pluck('id')->toArray()
+        // App\Recipe::all()->each(function ($recipe) use ($aliments) { 
+        //     $rand_aliment = $aliments->random(rand(1, 9))->pluck('id')->toArray();
+        //     $unit = $faker->randomElement($photos);
+        //     $quantity = $faker-> numberBetween(100,200);
+        //     $alimentos = collect([$rand_aliment,$unit,$quantity]);
+        //     $recipe->aliments()->attach(
+        //         $alimentos
+        //     ); 
+        // });
+
+
+        App\Recipe::all()->each(function ($recipe) use ($tags) { 
+            $recipe->tags()->attach(
+                $tags->random(rand(1, 9))->pluck('id')->toArray()
             ); 
         });
-
 
 
 

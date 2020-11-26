@@ -103,11 +103,17 @@ class RecipeController extends Controller
 
         $recipe = Recipe::findOrFail($id);
 
+        visits($recipe)->forceIncrement();
+
+        $total_visits = visits($recipe)->count();
+
         $aliments = [];
 
         $aliments = $recipe->aliments->pluck('name','id')->toArray();
 
-        return view('recipes.show', compact('recipe','aliments'));
+        
+
+        return view('recipes.show', compact('recipe','aliments','total_visits'));
     }
 
     /**

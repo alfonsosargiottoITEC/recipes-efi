@@ -11,7 +11,8 @@ class Recipe extends Model
         'user_id',
         'description',
         'category_id',
-        'photo'
+        'photo',
+        'view_count',
     ];
 
 
@@ -33,6 +34,11 @@ class Recipe extends Model
     public function category()
     {
         return $this->belongsTo('App\Category');
+    }
+
+    public function tags(){
+
+        return $this->belongsToMany('App\Tag');
     }
 
 }

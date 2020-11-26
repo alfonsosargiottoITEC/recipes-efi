@@ -20,6 +20,7 @@ class CreateRecipesTable extends Migration
             $table->foreignId('user_id')->unsigned()->nullable(false)->onDelete('cascade')->constrained();
             $table->string('photo', 255)->nullable(false);
             $table-> integer('rating')->default(0);
+            $table-> integer('view_count')->default(0);
             $table->timestamps();
         });
     }
