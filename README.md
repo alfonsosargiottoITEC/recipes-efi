@@ -1,7 +1,8 @@
 
 
-![LogoDR](./public/images/logoDR.png)
+![LogoDR](../public/images/logoDR.png)
 
+![alt text](https://github.com/[alfonsosargiottoITEC]/[recipes-efi]/blob/[main]/app/public/images/logoDR.png?raw=true)
 
 <p align="center">
 
