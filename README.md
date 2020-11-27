@@ -23,6 +23,5 @@
 
 
 
-## License
 
 The Delicious Recipes app is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
