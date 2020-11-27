@@ -33,6 +33,7 @@ class RecipeController extends Controller
         $recipes = Recipe::all();
         $categories = Category::all();
         $tags = Tag::all();
+        
 
         return view('recipes.index', compact('recipes','categories','tags'));
     }
@@ -51,8 +52,10 @@ class RecipeController extends Controller
 
         $aliments = Aliment::pluck('name','id')->all();
 
+        $tags = Tag::pluck('name','id')->all();
 
-        return view('recipes.create', compact('user','categories','aliments'));
+
+        return view('recipes.create', compact('user','categories','aliments','tags'));
     }
 
     /**
@@ -66,6 +69,8 @@ class RecipeController extends Controller
         
         $recipe = Recipe::create($request->all());
         $aliments_id =  $request->get('aliment_id',[]);
+        $tags_id =  $request->get('tag_id',[]);
+        $recipe->tags()->attach($tags_id);
         $recipe->aliments()->attach($aliments_id);
         return redirect('/recipes');
 

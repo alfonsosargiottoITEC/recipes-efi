@@ -37,6 +37,9 @@
           <option value="{{ $category->id }}">{{ $category->name }}</option>
         @endforeach
       </select>
+
+      {!! Form::label('tag_id', 'Tags') !!}
+      {!! Form::select('tag_id[]',[''=>'Choose tags'] + $tags, 1, ['class'=>'form-control','multiple'=>"multiple", 'required'=>'required']) !!}
   
   
       

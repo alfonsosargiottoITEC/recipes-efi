@@ -4,6 +4,9 @@
 @section('content')
     
 
+<div class="row">
+  <div class="col-md-3"></div>
+  <div class="col-md-3">
 
 
 <h1>Create aliment</h1>
@@ -19,7 +22,11 @@
     {!! Form::text('name', null, ['class'=>'form-control']) !!}
 
     {!! Form::label('classification_id', 'Classification') !!}
-    {!! Form::text('classification_id', null, ['class'=>'form-control']) !!}
+      <select name="classification_id" id="classification_id" class='form-control'>
+        @foreach($classifications as $classification )
+          <option value="{{ $classification->id }}">{{ $classification->name }}</option>
+        @endforeach
+      </select>
     
     {!! Form::hidden('user_id', $user->id) !!}
     
@@ -54,11 +61,11 @@
         
     @endif
 
+  </div>
 
 
 
-
-
+</div>
 
 
 

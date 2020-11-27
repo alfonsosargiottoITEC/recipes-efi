@@ -7,7 +7,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ config('app.name', 'Delicious Recipes') }}</title>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
@@ -16,20 +16,29 @@
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
+
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/mystyles.css') }}" rel="stylesheet">
     
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+        <nav class="navbar navbar-expand-md navbar navbar-dark bg-dark">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
+                    {{ config('app.name', 'Delicious Recipes') }}
                 </a>
-                <a href="{{ url('/aliments') }}">Aliments</a>
-                <a href="{{ url('/recipes') }}">Recipes</a>
-                <a href="{{ url('/myrecipes') }}">My recipes</a>
+                @if (auth()->check())
+                @if (auth()->user()->isAdmin())
+                <a class="nav-link" href="{{ url('/aliments') }}" style="font-size: large">Aliments</a>
+                <a class="nav-link" href="{{ url('/recipes') }}" style="font-size: large">Recipes</a>
+                @else
+                <a class="nav-link" href="{{ url('/recipes') }}" style="font-size: large">Recipes</a>
+                <a class="nav-link" href="{{ url('/myrecipes') }}" style="font-size: large">My recipes</a>
+                    
+                @endif
+                @endif
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>

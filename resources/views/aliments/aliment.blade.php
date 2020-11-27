@@ -13,6 +13,7 @@
     </head>
     <body>
       <div class="container">
+        
 
       {{-- <h1>Aliment id {{$id}} </h1>
       <h2>Aliment category {{$category}} </h2> --}}

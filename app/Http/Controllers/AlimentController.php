@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Aliment;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
+use App\Classification;
 
 class AlimentController extends Controller
 {
@@ -38,9 +39,11 @@ class AlimentController extends Controller
     {
         $user = Auth::user();
 
+        $classifications = Classification::all();
+
      
 
-        return view('aliments.create', compact('user'));
+        return view('aliments.create', compact('user','classifications'));
     }
 
     /**
@@ -54,7 +57,7 @@ class AlimentController extends Controller
         Aliment::create($request->all());
         
         $user = Auth::user();
-        Log::info('User created an aliment.', ['User ID: ' => $user->id]);
+        Log::info('User created an aliment.', ['User ID: ' => $user->id, 'Aliment name:'=>$request->name]);
 
         return redirect('/aliments');
     }
@@ -82,8 +85,9 @@ class AlimentController extends Controller
     {
         $aliment = Aliment::findOrFail($id);
         $user = Auth::user();
+        $classifications = Classification::pluck('name','id')->all();
 
-        return view('aliments.edit', compact('aliment','user'));
+        return view('aliments.edit', compact('aliment','user','classifications'));
     }
 
     /**

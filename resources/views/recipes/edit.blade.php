@@ -2,7 +2,16 @@
 
 
 @section('content')
+<div class="row justify-content-center">
+  <div class="col-md-5">
     
+  </div>
+</div>
+
+
+<div class="row justify-content-center">
+
+  <div class="col-md-7">
 
 
 
@@ -22,7 +31,7 @@
     {!! Form::text('photo', null, ['class'=>'form-control','required'=>'required', 'maxlength'=>'254']) !!}
 
     {!! Form::label('aliment_id', 'Aliments') !!}
-    {!! Form::select('aliment_id[]',[''=>'Choose aliments'] + $aliments, null, ['class'=>'form-control','multiple'=>"multiple"]) !!}
+    {!! Form::select('aliment_id[]',[''=>'Choose aliments'] + $aliments, $recipe->aliments, ['class'=>'form-control','multiple'=>"multiple"]) !!}
 
     {!! Form::label('category_id', 'Category') !!}
 
@@ -32,51 +41,35 @@
     
   </div>
 
-  {!! Form::submit('Editar receta', ['class'=>'btn btn-primary']) !!}
-
-{!! Form::close() !!}
-
-{{-- <form action="/recipes/{{$recipe->id}}" method="post">
   
-  @csrf
-
-
-  <input type="hidden" name="_method" value="PUT">
-  <input type="text" name="name" placeholder="Nombre de la receta" value="{{$recipe->name}}">
-  <input type="text" name="description"placeholder='Descripción' value="{{$recipe->description}}">
-  <input type="text" name="category_id" placeholder="category" value="{{$recipe->category_id}}">
   
+  <div class="row">
+    <div class="col-md-10">
+      
+      {!! Form::submit('Guardar cambios', ['class'=>'btn btn-success']) !!}    
+      {!! Form::close() !!}
+  </div>
+  <div class="col-md-2">
+    
+    {!! Form::open(['method'=>'DELETE', 'action'=>['RecipeController@destroy', $recipe->id]]) !!}
+    {!! Form::submit('Eliminar receta', ['class'=>'btn btn-danger']) !!}
+    {!! Form::close() !!}
+  </div>
 
-  <input type="submit" name='submit' value="UPDATE">
+
+</div>
 
 
 
-
-</form> --}}
-
-{!! Form::open(['method'=>'DELETE', 'action'=>['RecipeController@destroy', $recipe->id]]) !!}
-
-
-{!! Form::submit('Borrar receta', ['class'=>'btn btn-danger']) !!}
 
 
 {!! Form::close() !!}
 
+</div>
+</div>
 
 
 
-{{-- <form action="/recipes/{{$recipe->id}}" method="post">
-  @csrf
-
-  <input type="hidden" name="_method" value="DELETE">
-
-
-  <input type="submit" value="DELETE">
-
-
-
-</form>
- --}}
 
 
 
