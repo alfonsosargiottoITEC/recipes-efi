@@ -49,6 +49,6 @@ $factory->define(Recipe::class, function (Faker $faker) {
         'rating' => 0,
         'photo' =>$faker->randomElement($photos),
         'category_id' => $faker->numberBetween(1,8),
-        'view_count'=>0,
+        'view_count'=>$faker->numberBetween(30,500),
     ];
 });
