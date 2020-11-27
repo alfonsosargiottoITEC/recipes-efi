@@ -1,5 +1,5 @@
 
-![Delicious_Recipes](https://github.com/alfonsosargiottoITEC/recipes-efi/blob/master/logoDR.png)
+![Delicious_Recipes](https://github.com/alfonsosargiottoITEC/recipes-efi/blob/master/public/images/logoDR.png)
 
 
 
