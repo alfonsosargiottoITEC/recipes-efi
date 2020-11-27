@@ -6,6 +6,7 @@ use App\Http\Requests\CreateAlimentRequest;
 use Illuminate\Http\Request;
 use App\Aliment;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 
 class AlimentController extends Controller
 {
@@ -37,6 +38,8 @@ class AlimentController extends Controller
     {
         $user = Auth::user();
 
+     
+
         return view('aliments.create', compact('user'));
     }
 
@@ -49,7 +52,9 @@ class AlimentController extends Controller
     public function store(CreateAlimentRequest $request)
     {
         Aliment::create($request->all());
-
+        
+        $user = Auth::user();
+        Log::info('User created an aliment.', ['User ID: ' => $user->id]);
 
         return redirect('/aliments');
     }
