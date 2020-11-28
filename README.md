@@ -8,7 +8,7 @@
 </p>
 
 ## About Delicious Recipes
-**Delicious Recipes** is a website made for all the people who love **cooking**. It doesn't matter if you are a **beginner** or a **pro**. You will be allowed to learn from others and spreed your **knowledge**.
+**Delicious Recipes** is a website made for all the people who love **cooking**. It doesn't matter if you are a **beginner** or a **pro**. You will be allowed to learn from others and spread your **knowledge**.
 
 As a **guest** (that means that you don't have an **user**) you are allowed to **see** all the **recipes**, but no to **access** to all the important **information**.
  To get **access** to all the **features** of _**Delicius Recipes**_ website, you need to **register** yourself and **log in**, of course. Then you will be able to see all the **details** and get all the **info** to execute the recipe you watched. Also, you will be able to **create** your own **recipes** between the **3000** aliments and ingredients we have in our database. You **CAN'T** add new ingredients or aliments to the database,only **Admins can**.
@@ -49,10 +49,19 @@ _Admin user can do everything: View recipes details, delete and modify. He can a
 
 ## Resources
 
-API:
+**API** endpoints:
+
+- Retrieves all the recipes with some info.
+  - **Method:** GET
+  - **URI:** `http://localhost:8000/api/recipes`
+  - **Content-type:** JSON  
+- Retrieves a SINGLE recipe with all its related info, as category, aliments and others.
+  - **Method:** GET .
+  - **URI:** `http://localhost:8000/api/recipes/{recipeID}`
+  - **Content-type:** JSON  
 
 
-Command:
+**Command:**
 
 
 ## App origin
