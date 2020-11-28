@@ -378,11 +378,6 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-
-
-Route::get('/home', 'HomeController@index')->name('home');
-
-
 Route::get('/admin', function(){
 
 
@@ -402,6 +397,9 @@ Route::get('/myrecipes',['middleware'=>['auth'], 'uses'=>'RecipeController@myrec
     return view('recipes.myrecipes',compact('recipes','categories'));
     
 });
+
+Route::get('select2', 'RecipeController@index');
+Route::get('/select2-autocomplete-ajax', 'RecipeController@dataAjax');
 
 
 // Route::get('/admin/user/roles',['middleware'=>['role'], 'uses'=>'HomeController@index'], function () {

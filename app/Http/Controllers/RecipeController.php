@@ -179,4 +179,17 @@ class RecipeController extends Controller
 
         return view('recipes.myrecipes', compact('recipes','UserId'));
     }
+
+    public function dataAjax(Request $request)
+    {
+    	$data = [];
+
+        if($request->has('q')){
+            $search = $request->q;
+            $data =Recipe::select("id","name")
+            		->where('name','LIKE',"%$search%")
+            		->get();
+        }
+        return response()->json($data);
+    }
 }

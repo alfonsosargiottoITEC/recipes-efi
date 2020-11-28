@@ -23,17 +23,17 @@
       {!! Form::text('photo', null, ['class'=>'form-control','required'=>'required', 'maxlength'=>'254']) !!}
 
       {!! Form::label('aliment_id', 'Aliments') !!}
-      {!! Form::select('aliment_id[]',[''=>'Choose aliments'] + $aliments, 1, ['class'=>'form-control','multiple'=>"multiple", 'required'=>'required']) !!}
+      {!! Form::select('aliment_id[]',[''=>'Choose aliments'] + $aliments, 1, ['class'=>'multiple-aliments form-control','multiple'=>"multiple", 'required'=>'required']) !!}
 
       {!! Form::label('category_id', 'Category') !!}
-      <select name="category_id" id="category_id" class='form-control'>
+      <select name="category_id" id="category_id" class='filter-category form-control'>
         @foreach($categories as $category )
           <option value="{{ $category->id }}">{{ $category->name }}</option>
         @endforeach
       </select>
 
       {!! Form::label('tag_id', 'Tags') !!}
-      {!! Form::select('tag_id[]',[''=>'Choose tags'] + $tags, 1, ['class'=>'form-control','multiple'=>"multiple", 'required'=>'required']) !!}
+      {!! Form::select('tag_id[]',[''=>'Choose tags'] + $tags, 1, ['class'=>'multiple-tags form-control','multiple'=>"multiple", 'required'=>'required']) !!}
   
   
       
@@ -56,7 +56,7 @@
           {{-- @if (count($aliments) > 0)  --}}
             @foreach ($aliments  as $aliment)
             <tr>
-              <td></td>
+            <td>{{$aliment}}</td>
               <td></td>
               <td></td>
             </tr>      
