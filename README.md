@@ -4,12 +4,10 @@
 
 
 
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
-</p>
+<a href="#"><img src="https://img.shields.io/badge/license-MIT-green"></a>
+<a href="#"><img src="https://img.shields.io/badge/php-^7.4.3-blue"></a>
+<a href="#"><img src="https://img.shields.io/badge/laravel-^7.29-red"></a>
 
-### Important info
-#### PHP Version: 7.4.3
-#### Laravel Version: 7.x
 
 ## About Delicious Recipes
 **Delicious Recipes** is a website made for all the people who love **cooking**. It doesn't matter if you are a **beginner** or a **pro**. You will be allowed to learn from others and spread your **knowledge**.
@@ -18,6 +16,13 @@ As a **guest** (that means that you don't have an **user**) you are allowed to *
  To get **access** to all the **features** of _**Delicius Recipes**_ website, you need to **register** yourself and **log in**, of course. Then you will be able to see all the **details** and get all the **info** to execute the recipe you watched. Also, you will be able to **create** your own **recipes** between the **3000** aliments and ingredients we have in our database. You **CAN'T** add new ingredients or aliments to the database,only **Admins can**.
 You can **classify** your recipe, to help other people to find what they want, also with the help of **tags**.
 _Admin user can do everything: View recipes details, delete and modify. He can also create,edit and delete aliments._
+
+## Database model
+
+To understand a little more about this project here you have the database model screenshot. The main entities are **recipe** and **aliment** because as we all know, a **recipe** is made of two or more **aliments** or ingredients. 
+Each recipe has only **one category** and can have many **tags**. Also, **aliments** are **classified** of course.
+
+![Database_Model](https://github.com/alfonsosargiottoITEC/recipes-efi/blob/master/public/images/recipesDBmodel.png)
 
 
 ## How to install Delicious Recipes
@@ -65,11 +70,13 @@ _Admin user can do everything: View recipes details, delete and modify. He can a
   - **Content-type:** JSON  
 
 
-**Command:**
+**Command list:**  
 
+- To get a list of top viewed recipes run :  
+  - **`recipes:top-views`**
 
-## App origin
-
+## Project origin
+This Laravel project was developed as a end of course work for the "Programación III" signature.
 
 
 ## License
