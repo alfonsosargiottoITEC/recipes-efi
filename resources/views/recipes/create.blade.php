@@ -4,19 +4,13 @@
 @section('content')
     
 
-
-
-
-{{-- <form action="/recipes" method="post"> --}}
-  
-  {{-- @csrf --}}
   
   {!! Form::open(['method'=>'POST', 'action'=>'RecipeController@store']) !!}
   
   
   <div class="form-group row">
     <div class="col-md-2"></div>
-    <div class="col-md-8">
+    <div class="col-md-5">
       <h1>Create recipe</h1>
 
       {!! Form::label('name', 'Name') !!}
@@ -48,6 +42,30 @@
       
       {!! Form::submit('Crear receta', ['class'=>'btn btn-primary']) !!}
     </div>
+    <div class="col-md-4">
+      <H3>LISTADO DE ALIMENTOS</H3>
+      <table class="table table-dark">
+        <thead>
+          <tr>
+            <th scope="col">Nombre</th>
+            <th scope="col">Unidad</th>
+            <th scope="col">Cantidad</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{-- @if (count($aliments) > 0)  --}}
+            @foreach ($aliments  as $aliment)
+            <tr>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>      
+            @endforeach
+          {{-- @endif   --}}
+    
+        </tbody>
+      </table>
+    </div>
   
 
     </div>
@@ -77,25 +95,6 @@
     </div>
         
     @endif
-
-
-
-{{-- </form> --}}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 @endsection
 
