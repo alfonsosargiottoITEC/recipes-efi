@@ -7,6 +7,10 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
 </p>
 
+### Important info
+#### PHP Version: 7.4.3
+#### Laravel Version: 7.x
+
 ## About Delicious Recipes
 **Delicious Recipes** is a website made for all the people who love **cooking**. It doesn't matter if you are a **beginner** or a **pro**. You will be allowed to learn from others and spread your **knowledge**.
 
