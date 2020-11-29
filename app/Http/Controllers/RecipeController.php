@@ -180,7 +180,6 @@ class RecipeController extends Controller
         $recipe->aliments()->sync($aliments_id);
 
         $unit =  $request->get('unit',[]);
-        return $unit;
 
 
 
