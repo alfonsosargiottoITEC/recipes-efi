@@ -50,7 +50,9 @@ class RecipeController extends Controller
 
         $categories = Category::all();
 
-        $aliments = Aliment::pluck('name','id')->all();
+        // $aliments = Aliment::pluck('name','id')->all();
+
+        $aliments = Aliment::all();
 
         $tags = Tag::pluck('name','id')->all();
 
@@ -68,10 +70,37 @@ class RecipeController extends Controller
     {
         
         $recipe = Recipe::create($request->all());
+
         $aliments_id =  $request->get('aliment_id',[]);
+        $unities =  $request->get('unit',[]);
+        $quantities =  $request->get('quantity',[]);
+
+        $fullAliments = [];
+        for($i = 0; $i < count($aliments_id); $i++)
+        {
+
+            $fullAliments[$aliments_id[$i]] = ['quantity' => $quantities[$i],
+            'unit' => $unities[$i]
+        ];
+
+        };
+
+        // $food->allergies()->sync($sync_data);
+
+        
+
+        // foreach($aliments_id as $key=> $aliment_id){
+        //     $alimentsList[] =
+        // }
+
+        
+
         $tags_id =  $request->get('tag_id',[]);
+
         $recipe->tags()->attach($tags_id);
-        $recipe->aliments()->attach($aliments_id);
+
+        $recipe->aliments()->attach($fullAliments);
+
         return redirect('/recipes');
 
     }

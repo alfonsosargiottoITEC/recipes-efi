@@ -5,7 +5,7 @@
     
 
   
-  {!! Form::open(['method'=>'POST', 'action'=>'RecipeController@store']) !!}
+  {!! Form::open(['method'=>'POST', 'action'=>'RecipeController@store', 'id'=>'input-form']) !!}
   
   
   <div class="form-group row">
@@ -43,19 +43,20 @@
       {!! Form::submit('Crear receta', ['class'=>'btn btn-primary']) !!}
     </div>
     <div class="col-md-4">
-      <H3>LISTADO DE ALIMENTOS</H3>
+      <H3>LIST OF ALIMENTS</H3>
       <table class="table table-dark">
         <thead>
           <tr>
-            <th scope="col">Nombre</th>
-            <th scope="col">Unidad</th>
-            <th scope="col">Cantidad</th>
+            <th scope="col">Name</th>
+            <th scope="col">Unit type</th>
+            <th scope="col">Quantity</th>
             <th><a href="#" onclick="return addRow();" class='btn btn-info'>+</a></th>
           </tr>
         </thead>
         <tbody>
 
 
+          {{-- para multiselect desde dropdown menu --}}
           {{-- <td>{!! Form::select('aliment', $aliments,1, ['class'=>'filter-aliment form-control', 'required'=>'required']) !!}</td>
           <td><input type="text" name="unit" class="form-control"></td>
           <td><input type="text" name="quantity" class="form-control"></td>
@@ -115,7 +116,7 @@
 
   var aliment_id = [];
 
-$('.filter-aliment2').select2();
+
   
   function addRow(){
   
@@ -123,29 +124,27 @@ $('.filter-aliment2').select2();
            "<td>"+
 
 
-            "<select name='aliment_id2' id='aliment_id2' class='filter-aliment2 form-control'>"+
+            "<select name='aliment_id[]'  class='filter-aliment form-control',style='width:200px;' required>"+
             "@foreach($aliments as $aliment )"+
-            "<option value='{{$aliment}}'>{{ $aliment }}</option>"+
+            "<option class='aliment_id' value='{{$aliment->id}}'>{{ $aliment->name }}</option>"+
             "@endforeach"+
             "</select>"+            
             "</td>"+
-            "<td><input type='text' value='Gramos' name='unit' class='form-control'></td>"+
-            "<td><input type='number' name='quantity' class='form-control'></td>"+
+            "<td><input type='text' value='Gramos' name='unit[]' class='form-control', required></td>"+
+            "<td><input type='number' name='quantity[]' class='form-control', required></td>"+            
             "<td><a href='#'  class='btn btn-danger removeRow'>-</a></td>"+
 
             "</tr>";
 
  
   $('tbody').append(tr);
-  aliment_id.push('Cebolla');
-  console.log('aliment id : ', aliment_id)
-
-
   $('tbody').on('click', '.removeRow', function(){
     $(this).parent().parent().remove();
   });
 
-  
+  $('.filter-aliment').select2();
+
+
   
   }
   
