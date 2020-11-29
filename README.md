@@ -34,6 +34,9 @@ Each recipe has only **one category** and can have many **tags**. Also, **alimen
 
 3. Navigate into the folder with your terminal and run the next command to install dependencies:
    - **`composer install`**
+   
+   - Also you should run another command to install npm packages:  
+     -  **`npm install`**
 
 4. Copy the **.env.example** from the root app directory file and create your own **.env** or rename the file to '.env'
 
@@ -73,10 +76,10 @@ Each recipe has only **one category** and can have many **tags**. Also, **alimen
 **Command list:**  
 
 - To get a list of top viewed recipes run :  
-  - **`recipes:top-views`**
+  - **`php artisan recipes:top-views`**
 
 ## Project origin
-This Laravel project was developed as a end of course work for the "Programación III" signature.
+This Laravel project was developed as a end of course work for the "Programación III" signature from Software Development career in Instituto Tecnológico Río Cuarto.
 
 
 ## License
