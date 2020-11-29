@@ -57,21 +57,19 @@ class DatabaseSeeder extends Seeder
 
         $aliments = App\Aliment::all();
         $tags = App\Tag::all();
-        $units = [['key'=>'Mililitros','name'=>'mm'],['key'=>'Gramos','name'=>'grs']];
-    
-        // App\Recipe::all()->each(function ($recipe) use ($aliments) { 
-        //     $rand_aliment = $aliments->random(rand(1, 9))->pluck('id')->toArray();
-        //     $unit = $faker->randomElement($units);
-        //     $quantity = $faker-> numberBetween(100,200);
-        //     $alimentos = collect([$rand_aliment,$unit,$quantity]);
-        //     $recipe->aliments()->attach(
-        //         $alimentos
-        //     ); 
-        // });
+
+        $unitsList = ['mms','grs','spoonful','cm3'];
+        $quantities = [200,4,500,1600,3,10,99,150,20];
+
+
+
+        $units = Arr::pluck($unitsList, 'name', 'id');
+
     
         App\Recipe::all()->each(function ($recipe) use ($aliments) { 
                 $recipe->aliments()->attach(
-                    $aliments->random(rand(1, 9))->pluck('id')->toArray()
+                    $aliments->random(rand(1, 9))->pluck('id')->toArray(),
+                    ['quantity'=>rand(5,2500),'unit'=>Arr::random(['mms','grs','spoonful','cm3'])]
                 ); 
             });
         

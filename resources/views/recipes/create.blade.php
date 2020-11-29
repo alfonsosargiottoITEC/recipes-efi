@@ -33,7 +33,7 @@
       </select>
 
       {!! Form::label('tag_id', 'Tags') !!}
-      {!! Form::select('tag_id[]',[''=>'Choose tags'] + $tags, 1, ['class'=>'multiple-tags form-control','multiple'=>"multiple", 'required'=>'required']) !!}
+      {!! Form::select('tag_id[]',[''=>'Choose tags'] + $tags, 2, ['class'=>'multiple-tags form-control','multiple'=>"multiple", 'required'=>'required']) !!}
   
   
       
@@ -42,37 +42,19 @@
       
       {!! Form::submit('Crear receta', ['class'=>'btn btn-primary']) !!}
     </div>
-    <div class="col-md-4">
+    <div class="col-md-5">
       <H3>LIST OF ALIMENTS</H3>
       <table class="table table-dark">
         <thead>
           <tr>
-            <th scope="col">Name</th>
-            <th scope="col">Unit type</th>
-            <th scope="col">Quantity</th>
+            <th scope="col" >Name</th>
+            <th scope="col" >Unit type</th>
+            <th scope="col" >Quantity</th>
             <th><a href="#" onclick="return addRow();" class='btn btn-info'>+</a></th>
           </tr>
         </thead>
         <tbody>
-
-
-          {{-- para multiselect desde dropdown menu --}}
-          {{-- <td>{!! Form::select('aliment', $aliments,1, ['class'=>'filter-aliment form-control', 'required'=>'required']) !!}</td>
-          <td><input type="text" name="unit" class="form-control"></td>
-          <td><input type="text" name="quantity" class="form-control"></td>
-          <td><a href="#" class='btn btn-danger'>-</a></td> --}}
-
-          {{-- @if (count($aliments) > 0)  --}}
-            {{-- @foreach ($aliments  as $aliment)
-            <tr>
-            <td>{{$aliment}}</td>
-              <td></td>
-              <td></td>
-            </tr>      
-            @endforeach --}}
-          {{-- @endif   --}}
-
-
+           
     
         </tbody>
       </table>
@@ -116,22 +98,27 @@
 
   var aliment_id = [];
 
-
+  
   
   function addRow(){
   
     var tr = "<tr>" +
            "<td>"+
-
-
             "<select name='aliment_id[]'  class='filter-aliment form-control',style='width:200px;' required>"+
             "@foreach($aliments as $aliment )"+
             "<option class='aliment_id' value='{{$aliment->id}}'>{{ $aliment->name }}</option>"+
             "@endforeach"+
             "</select>"+            
             "</td>"+
-            "<td><input type='text' value='Gramos' name='unit[]' class='form-control', required></td>"+
-            "<td><input type='number' name='quantity[]' class='form-control', required></td>"+            
+            "<td>"+
+              "<select name='unit[]'  class='filter-unit form-control',style='width:150px;' required>"+
+              "@foreach($units as $unit )"+
+            "<option  value='{{ $unit }}'>{{ $unit }}</option>"+
+            "@endforeach"+
+            "</select>"+
+            "</td>"+
+            "<td>"+
+              "<input type='number' name='quantity[]' class='form-control',style='width:150px;' required></td>"+            
             "<td><a href='#'  class='btn btn-danger removeRow'>-</a></td>"+
 
             "</tr>";
@@ -143,6 +130,7 @@
   });
 
   $('.filter-aliment').select2();
+  $('.filter-unit').select2();
 
 
   

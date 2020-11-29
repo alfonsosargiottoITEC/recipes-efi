@@ -56,8 +56,16 @@ class RecipeController extends Controller
 
         $tags = Tag::pluck('name','id')->all();
 
+        $units = ['mms','grs','spoonful','cm3'];
 
-        return view('recipes.create', compact('user','categories','aliments','tags'));
+        
+
+        // return $units;
+
+        
+        
+
+        return view('recipes.create', compact('user','categories','aliments','tags','units'));
     }
 
     /**
@@ -72,7 +80,7 @@ class RecipeController extends Controller
         $recipe = Recipe::create($request->all());
 
         $aliments_id =  $request->get('aliment_id',[]);
-        $unities =  $request->get('unit',[]);
+        $units =  $request->get('unit',[]);
         $quantities =  $request->get('quantity',[]);
 
         $fullAliments = [];
@@ -80,20 +88,10 @@ class RecipeController extends Controller
         {
 
             $fullAliments[$aliments_id[$i]] = ['quantity' => $quantities[$i],
-            'unit' => $unities[$i]
+            'unit' => $units[$i]
         ];
 
         };
-
-        // $food->allergies()->sync($sync_data);
-
-        
-
-        // foreach($aliments_id as $key=> $aliment_id){
-        //     $alimentsList[] =
-        // }
-
-        
 
         $tags_id =  $request->get('tag_id',[]);
 
@@ -150,7 +148,11 @@ class RecipeController extends Controller
 
         $aliments = Aliment::pluck('name','id')->all();
 
-        return view('recipes.edit', compact('recipe','user','aliments','categories'));
+        $tags = Tag::pluck('name','id')->all();
+
+        $units = ['mms','grs','spoonful','cm3'];
+
+        return view('recipes.edit', compact('recipe','user','aliments','categories','tags','units'));
     }
 
     /**
@@ -169,9 +171,16 @@ class RecipeController extends Controller
         
         $aliments_id =  $request->get('aliment_id',[]);
 
+        $tags_id =  $request->get('tag_id',[]);
+
+        $recipe->tags()->attach($tags_id);
+
         $recipe->update($request->all());
 
-        $recipe->aliments()->attach($aliments_id);
+        $recipe->aliments()->sync($aliments_id);
+
+        $unit =  $request->get('unit',[]);
+        return $unit;
 
 
 
