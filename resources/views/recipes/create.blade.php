@@ -22,8 +22,8 @@
       {!! Form::label('photo', 'Photo link: ') !!}
       {!! Form::text('photo', null, ['class'=>'form-control','required'=>'required', 'maxlength'=>'254']) !!}
 
-      {!! Form::label('aliment_id', 'Aliments') !!}
-      {!! Form::select('aliment_id[]',[''=>'Choose aliments'] + $aliments, 1, ['class'=>'multiple-aliments form-control','multiple'=>"multiple", 'required'=>'required']) !!}
+      {{-- {!! Form::label('aliment_id', 'Aliments') !!}
+      {!! Form::select('aliment_id[]',[''=>'Choose aliments'] + $aliments, 1, ['class'=>'multiple-aliments form-control','multiple'=>"multiple", 'required'=>'required']) !!} --}}
 
       {!! Form::label('category_id', 'Category') !!}
       <select name="category_id" id="category_id" class='filter-category form-control'>
@@ -50,18 +50,28 @@
             <th scope="col">Nombre</th>
             <th scope="col">Unidad</th>
             <th scope="col">Cantidad</th>
+            <th><a href="#" onclick="return addRow();" class='btn btn-info'>+</a></th>
           </tr>
         </thead>
         <tbody>
+
+
+          {{-- <td>{!! Form::select('aliment', $aliments,1, ['class'=>'filter-aliment form-control', 'required'=>'required']) !!}</td>
+          <td><input type="text" name="unit" class="form-control"></td>
+          <td><input type="text" name="quantity" class="form-control"></td>
+          <td><a href="#" class='btn btn-danger'>-</a></td> --}}
+
           {{-- @if (count($aliments) > 0)  --}}
-            @foreach ($aliments  as $aliment)
+            {{-- @foreach ($aliments  as $aliment)
             <tr>
             <td>{{$aliment}}</td>
               <td></td>
               <td></td>
             </tr>      
-            @endforeach
+            @endforeach --}}
           {{-- @endif   --}}
+
+
     
         </tbody>
       </table>
@@ -70,6 +80,7 @@
 
     </div>
 
+    
 
 
     {!! Form::close() !!}
@@ -98,4 +109,47 @@
 
 @endsection
 
+@push('scripts')
+
+<script>
+
+  var aliment_id = [];
+
+$('.filter-aliment2').select2();
+  
+  function addRow(){
+  
+    var tr = "<tr>" +
+           "<td>"+
+
+
+            "<select name='aliment_id2' id='aliment_id2' class='filter-aliment2 form-control'>"+
+            "@foreach($aliments as $aliment )"+
+            "<option value='{{$aliment}}'>{{ $aliment }}</option>"+
+            "@endforeach"+
+            "</select>"+            
+            "</td>"+
+            "<td><input type='text' value='Gramos' name='unit' class='form-control'></td>"+
+            "<td><input type='number' name='quantity' class='form-control'></td>"+
+            "<td><a href='#'  class='btn btn-danger removeRow'>-</a></td>"+
+
+            "</tr>";
+
+ 
+  $('tbody').append(tr);
+  aliment_id.push('Cebolla');
+  console.log('aliment id : ', aliment_id)
+
+
+  $('tbody').on('click', '.removeRow', function(){
+    $(this).parent().parent().remove();
+  });
+
+  
+  
+  }
+  
+</script>
+    
+@endpush
 

@@ -3,6 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="{{ URL::asset('/images/logoDRblack.ico') }}" type="image/x-icon"/>
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -19,6 +20,7 @@
     <link href="{{ asset ('css/select2.min.css') }}" rel="stylesheet">    <!-- JavaScripts -->    
     <script language="JavaScript" type="text/javascript" src="{{asset ('js/select2.min.js') }}" defer></script>
     <script language="JavaScript" type="text/javascript" src="{{ asset('js/alimentFilter.js') }}" defer></script>
+    {{-- <script language="JavaScript" type="text/javascript" src="{{ asset('js/addAlimentRow.js') }}" defer></script> --}}
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -95,8 +97,9 @@
 
         <main class="py-4">
             @yield('content')
+            
         </main>
     </div>
-    
+    @stack('scripts')
 </body>
 </html>

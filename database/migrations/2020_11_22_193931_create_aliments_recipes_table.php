@@ -18,7 +18,7 @@ class CreateAlimentsRecipesTable extends Migration
             $table->integer('aliment_id');
             $table->integer('recipe_id');
             $table->integer('quantity')->default(0);
-            $table->integer('unit')->default(1);
+            $table->string('unit')->default('Gramos');
             $table->timestamps();
         });
     }

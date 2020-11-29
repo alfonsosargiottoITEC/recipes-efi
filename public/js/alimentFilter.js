@@ -8,6 +8,12 @@ $(document).ready(function() {
 
 
   $('.filter-category').select2();
+
+
+  $('.filter-aliment').select2();
+
+  $('.filter-aliment2').select2();
+
   
 });
 

@@ -401,6 +401,12 @@ Route::get('/myrecipes',['middleware'=>['auth'], 'uses'=>'RecipeController@myrec
 Route::get('select2', 'RecipeController@index');
 Route::get('/select2-autocomplete-ajax', 'RecipeController@dataAjax');
 
+Route::get("addmore","RecipeController@addMore");
+
+Route::post("addmore","RecipeController@addMorePost")->name('addmorePost');
+
+Route::post('recipes/insert2', 'RecipeController@insert2')->name('recipes.insert2');
+
 
 // Route::get('/admin/user/roles',['middleware'=>['role'], 'uses'=>'HomeController@index'], function () {
 
