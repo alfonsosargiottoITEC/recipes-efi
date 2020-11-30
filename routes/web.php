@@ -7,6 +7,7 @@ use App\Recipe;
 use App\Category;
 use App\User;
 use App\Role;
+use App\Favorite;
 use Illuminate\Support\Facades\Auth;
 
 
@@ -84,6 +85,9 @@ Route::group(['middleware' => 'web'], function () {
     Route::resource('/users', 'UserController');
     
     Route::resource('/recipes', 'RecipeController');
+
+    
+
     
 });
 
@@ -120,6 +124,10 @@ Route::post("addmore","RecipeController@addMorePost")->name('addmorePost');
 
 Route::post('recipes/insert2', 'RecipeController@insert2')->name('recipes.insert2');
 
+Route::post('/favorite/{recipe}', 'RecipeController@favoriteRecipe')->middleware('auth');
+Route::post('/unfavorite/{recipe}', 'RecipeController@unFavoriteRecipe')->middleware('auth');
+
+Route::get('my_favorites', 'UserController@myFavorites')->middleware('auth');
 
 // Route::get('/admin/user/roles',['middleware'=>['role'], 'uses'=>'HomeController@index'], function () {
 

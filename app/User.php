@@ -8,6 +8,7 @@ use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
+    
     use Notifiable;
 
     /**
@@ -16,7 +17,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password','favorite_id','favorites'
     ];
 
     /**
@@ -62,6 +63,14 @@ class User extends Authenticatable
 
         return false;
     }
+
+    public function favorites()
+{
+    
+    return $this->belongsToMany('App\Recipe', 'favorites', 'user_id' ,'recipe_id')->withTimestamps();
+}
+
+
 
 
 }
