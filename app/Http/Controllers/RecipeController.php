@@ -36,6 +36,7 @@ class RecipeController extends Controller
         $categories = Category::all();
         $tags = Tag::all();
         $favorites = Favorite::all();
+        
 
         return view('recipes.index', compact('recipes','categories','tags','favorites'));
     }
