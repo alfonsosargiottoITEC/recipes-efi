@@ -40,7 +40,7 @@ Each recipe has only **one category** and can have many **tags**. Also, **alimen
 5. You need to configure your DB connection and generate an app key with the command:
     - **`php artisan key:generate`**
 6. Now, to create the database tables and their relationships run:
-    - **`php artisan migrate:fresh --seed`**  
+    - **`php artisan migrate --seed`**  
     
     _The **'--seed'** flag will insert some random data in the DB so you can start with some info._
 
