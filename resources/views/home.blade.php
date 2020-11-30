@@ -26,13 +26,18 @@
     
       
       <div class="card-body pt-50">
-        <h5 class="card-title">{{$recipe->name}}</h5>
+        <h5 class="card-title">{{$recipe->name}}
+          <example-component
+            :recipe={{ $recipe->id }}
+            :favorited={{ $recipe->favorited() ? 'true' : 'false' }}>
+          </example-component>
+        </h5>
         <p class="card-text">{{Str::limit($recipe->description,'70', '...')}}</p>
         
 
         <div class="card-footer text-muted">
 
-            <p class="card-text"> Votes: {{$recipe->rating}}</p>
+            
             <p>Created by: {{$recipe->user->name}}</p> 
             <p>Created on {{$recipe->created_at->diffForHumans()}}</p> 
 

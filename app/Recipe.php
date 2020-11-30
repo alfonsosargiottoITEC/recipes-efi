@@ -3,9 +3,14 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Favorite;
+use Illuminate\Support\Facades\Auth;
 
 class Recipe extends Model
 {
+
+    
+
     protected $fillable = [
         'name',
         'user_id',
@@ -13,6 +18,8 @@ class Recipe extends Model
         'category_id',
         'photo',
         'view_count',
+        'favorite_id',
+        'favorites'
     ];
 
 
@@ -39,6 +46,18 @@ class Recipe extends Model
     public function tags(){
 
         return $this->belongsToMany('App\Tag');
+    }
+
+    public function favorites(){
+        return $this->hasMany('App\Favorite');
+    }
+
+    
+    public function favorited()
+    {
+    return (bool) Favorite::where('user_id', Auth::id())
+                        ->where('recipe_id', $this->id)
+                        ->first();
     }
 
 }

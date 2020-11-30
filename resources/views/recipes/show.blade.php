@@ -20,9 +20,14 @@
 <div class="card md-5 ml-4 mb-md-5 pb-md-5 mt-5" style="width: 44rem;height: 55rem;">
   <a href="{{route('recipes.edit', $recipe->id)}}"><img class="card-img-top img-fluid" src="{{$recipe->photo}}" alt="Card image cap"></a>
     <div class="card-body">
-      <h5 class="card-title">{{$recipe->name}}</h5>
+      <h5 class="card-title">{{$recipe->name}}
+        <example-component
+          :recipe={{ $recipe->id }}
+          :favorited={{ $recipe->favorited() ? 'true' : 'false' }}>
+        </example-component>
+      </h5>
       <p class="card-text">{{$recipe->description}}.</p>
-    <p class="card-text"><small class="text-muted">Rating: {{$recipe->rating}}</small></p>
+    <p class="card-text"><small class="text-muted">Favs: {{$favorites}}</small></p>
     <p class="card-text"><small class="text-muted">Category: {{$recipe->category->name}}</small></p>
     <p class="card-text"><small class="text-muted">Created by: {{$recipe->user->name}}</small></p>
     <p class="card-text"><small class="text-muted">Total visits: {{$total_visits}}</small></p>

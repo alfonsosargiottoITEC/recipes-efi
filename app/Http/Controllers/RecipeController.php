@@ -4,13 +4,15 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\CreateRecipeRequest;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use App\Recipe;
 use Illuminate\Support\Facades\Auth;
 use App\Category;
 use App\Aliment;
 use App\Tag;
 use Illuminate\Support\Arr;
-
+use App\User;
+use App\Favorite;
 
 
 class RecipeController extends Controller
@@ -33,9 +35,10 @@ class RecipeController extends Controller
         $recipes = Recipe::all();
         $categories = Category::all();
         $tags = Tag::all();
+        $favorites = Favorite::all();
         
 
-        return view('recipes.index', compact('recipes','categories','tags'));
+        return view('recipes.index', compact('recipes','categories','tags','favorites'));
     }
 
     /**
@@ -126,8 +129,13 @@ class RecipeController extends Controller
 
         $aliments = $recipe->aliments->toArray();
 
+        $favorites = Favorite::all();
 
-        return view('recipes.show', compact('recipe','aliments','total_visits','tags'));
+        $favorites = $recipe->favorites->count();
+     
+
+
+        return view('recipes.show', compact('recipe','aliments','total_visits','tags', 'favorites'));
     }
 
     /**
@@ -228,6 +236,26 @@ class RecipeController extends Controller
             		->get();
         }
         return response()->json($data);
+    }
+
+    public function favoriteRecipe(Recipe $recipe)
+    {
+
+        $user = Auth::user();
+
+        $user->favorites()->attach($recipe->id);
+
+        return back();
+    }
+    public function unFavoriteRecipe(Recipe $recipe)
+    {
+
+
+        $user = Auth::user();
+        
+        $user->favorites()->detach($recipe->id);
+
+        return back();
     }
     
     

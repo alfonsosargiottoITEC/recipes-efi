@@ -1919,14 +1919,40 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
+  props: ['recipe', 'favorited'],
+  data: function data() {
+    return {
+      isFavorited: ''
+    };
+  },
   mounted: function mounted() {
-    console.log('Component mounted.');
+    this.isFavorited = this.isFavorite ? true : false;
+  },
+  computed: {
+    isFavorite: function isFavorite() {
+      return this.favorited;
+    }
+  },
+  methods: {
+    favorite: function favorite(recipe) {
+      var _this = this;
+
+      axios.post('/favorite/' + recipe).then(function (response) {
+        return _this.isFavorited = true;
+      })["catch"](function (response) {
+        return console.log(response.data);
+      });
+    },
+    unFavorite: function unFavorite(recipe) {
+      var _this2 = this;
+
+      axios.post('/unfavorite/' + recipe).then(function (response) {
+        return _this2.isFavorited = false;
+      })["catch"](function (response) {
+        return console.log(response.data);
+      });
+    }
   }
 });
 
@@ -37522,32 +37548,37 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c("span", [
+    _vm.isFavorited
+      ? _c(
+          "a",
+          {
+            attrs: { href: "#" },
+            on: {
+              click: function($event) {
+                $event.preventDefault()
+                return _vm.unFavorite(_vm.recipe)
+              }
+            }
+          },
+          [_c("i", { staticClass: "fa fa-heart" })]
+        )
+      : _c(
+          "a",
+          {
+            attrs: { href: "#" },
+            on: {
+              click: function($event) {
+                $event.preventDefault()
+                return _vm.favorite(_vm.recipe)
+              }
+            }
+          },
+          [_c("i", { staticClass: "fa fa-heart-o" })]
+        )
+  ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "container" }, [
-      _c("div", { staticClass: "row justify-content-center" }, [
-        _c("div", { staticClass: "col-md-8" }, [
-          _c("div", { staticClass: "card" }, [
-            _c("div", { staticClass: "card-header" }, [
-              _vm._v("Example Component")
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "card-body" }, [
-              _vm._v(
-                "\n                    I'm an example component.\n                "
-              )
-            ])
-          ])
-        ])
-      ])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -49741,7 +49772,8 @@ window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
-Vue.component('example-component', __webpack_require__(/*! ./components/ExampleComponent.vue */ "./resources/js/components/ExampleComponent.vue")["default"]);
+Vue.component('example-component', __webpack_require__(/*! ./components/ExampleComponent.vue */ "./resources/js/components/ExampleComponent.vue")["default"]); // Vue.component('favorite', require('./components/Favorite.vue').default);
+
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
