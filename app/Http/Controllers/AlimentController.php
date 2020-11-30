@@ -57,6 +57,7 @@ class AlimentController extends Controller
         Aliment::create($request->all());
         
         $user = Auth::user();
+        
         Log::info('User created an aliment.', ['User ID: ' => $user->id, 'Aliment name:'=>$request->name]);
 
         return redirect('/aliments');

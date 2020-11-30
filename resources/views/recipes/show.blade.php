@@ -69,8 +69,8 @@
         @foreach ($aliments  as $aliment)
         <tr>
           <td>{{$aliment['name']}}</td>
-          <td>{{$aliment['pivot']['quantity']}}</td>
           <td>{{$aliment['pivot']['unit']}}</td>
+          <td>{{$aliment['pivot']['quantity']}}</td>
         </tr>      
         @endforeach
       @endif  
